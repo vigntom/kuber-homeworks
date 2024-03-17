@@ -42,7 +42,7 @@
 
 ------
 
-![Service](./images/servce.jpg)
+![Service](./images/service.jpg)
 
 ------
 
