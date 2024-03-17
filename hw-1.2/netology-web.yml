@@ -1,10 +1,11 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: echo
+  name: netology-web
+  labels:
+    env: stage
+    use: echoserver
 spec:
   containers:
-    - name: echo
-      image: gcr.io/kubernetes-e2e-test-images/echoserver-arm:2.2
-      ports:
-        - containerPort: 80
+    - name: echoserver
+      image: gcr.io/kubernetes-e2e-test-images/echoserver:2.2
