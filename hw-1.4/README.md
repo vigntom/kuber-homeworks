@@ -36,7 +36,7 @@
 По п. 3 не знаю надо ли скрины. Набрал `kubectl get pods -o wide`, зашел в multitool и проверил по полученным ip
 ![nginx-svc](./images/task-1.png)
 
-Манифест: [src](./task-1/service-out.yaml)
+Манифест: [src](./task-1)
 
 ------
 
@@ -49,6 +49,8 @@
 ------
 Решение:
 ![nginx-out-svc](./images/task-2.png)
+
+Манифест: [src](./task-1/service-out.yaml)
 ------
 
 ### Правила приёма работы
