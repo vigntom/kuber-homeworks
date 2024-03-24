@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-svc
+spec:
+  selector:
+    app: nginx
+  ports:
+    - name: nginx
+      port: 9001
+      targetPort: http-nginx-svc
+    - name: mtool
+      port: 9002
+      targetPort: mtool-nginx-svc
