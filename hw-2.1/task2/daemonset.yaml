@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: task2
+  labels:
+    app: task2-log-daemon
+spec:
+  selector:
+    matchLabels:
+      name: task2-multitool
+  template:
+    metadata:
+      labels:
+        name: task2-multitool
+    spec:
+      containers:
+        - name: multitool
+          image: wbitt/network-multitool
+          volumeMounts:
+            - name: varlog
+              mountPath: /var/log/nodelog
+      volumes:
+        - name: varlog
+          hostPath:
+            path: /var/log
