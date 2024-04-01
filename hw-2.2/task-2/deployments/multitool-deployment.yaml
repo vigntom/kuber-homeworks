@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-development
+  labels:
+    app: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: multitool
+          image: wbitt/network-multitool
+          ports:
+            - containerPort: 80
+              name: back-svc
+          volumeMounts:
+            - name: shared-volume-1
+              mountPath: /mnt/nfs
+      volumes:
+        - name: shared-volume-1
+          persistentVolumeClaim:
+            claimName: my-pvc
