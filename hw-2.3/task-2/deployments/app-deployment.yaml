@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-deployment
+  labels:
+    app: app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.24-alpine
+          ports:
+            - name: app-port-svc
+              containerPort: 80
+          volumeMounts:
+            - name: nginx-root
+              mountPath: /usr/share/nginx/html
+      volumes:
+        - name: nginx-root
+          configMap:
+            name: app-config
+            items:
+              - key: welcome
+                path: index.html

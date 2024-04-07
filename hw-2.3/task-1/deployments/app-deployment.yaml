@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-deployment
+  labels:
+    app: app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.24-alpine
+          volumeMounts:
+            - name: nginx-root
+              mountPath: /usr/share/nginx/html
+          env:
+            - name: NGINX_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: port.nginx
+        - name: multitool
+          image: wbitt/network-multitool
+          env:
+            - name: HTTP_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: port.multitool
+      volumes:
+        - name: nginx-root
+          configMap:
+            name: app-config
+            items:
+              - key: welcome
+                path: index.html
