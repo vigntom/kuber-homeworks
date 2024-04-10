@@ -1,0 +1,12 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: farida
+subjects:
+  - kind: User
+    name: farida
+    apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: pod-restricted-view
+  apiGroup: rbac.authorization.k8s.io
